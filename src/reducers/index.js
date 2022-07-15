@@ -3,15 +3,14 @@ import {combineReducers} from "redux";
 const todoReducer = (state = [], action) => {
     switch (action.type) {
         case "ADD_TODO":
-            return state.push(action.payload);
+            return state.concat(action.payload);
         default:
             return state;
     }
-    ;
 }
 
 
-export const allReducers = combineReducers({
+const allReducers = combineReducers({
     todo: todoReducer,
 });
 
