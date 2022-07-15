@@ -6,6 +6,7 @@ import App from './App';
 import "./App.sass";
 
 import { createStore } from "redux";
+import { Provider } from 'react-redux';
 
 import allReducers from './reducers';
 
@@ -16,5 +17,7 @@ let store = createStore(
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App />
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
