@@ -1,10 +1,29 @@
 import { combineReducers } from "redux";
 
-import counterReducer from "./counter";
-import loggedReducer from "./islogged";
+const counterReducer = (state = 0, action) => {
+    switch (action.type) {
+        case "INC":
+            return state + action.payload;
+        case "DEC":
+            return state - action.payload;
+        default:
+          return state;
+    };
+}
 
-const allReducers = combineReducers({
-    conter: counterReducer,
+const loggedReducer = (state = false, action) => {
+    switch (action.type) {
+        case "SIGN_IN":
+            return !state;
+        case "SIGN_OUT":
+            return !state;
+        default:
+            return state;
+    }
+}
+
+export const allReducers = combineReducers({
+    counter: counterReducer,
     logged: loggedReducer
 });
 
