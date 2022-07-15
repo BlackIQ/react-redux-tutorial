@@ -28,7 +28,17 @@ const AddTodoDialog = (props) => {
         onClose(selectedValue);
     };
 
-    const [task, setTask] = useState('');
+    const [taskName, setTaskName] = useState('');
+    const [taskDetails, setTaskDetails] = useState('');
+
+    const addTask = () => {
+        const task = {
+            name: taskName,
+            details: taskDetails
+        }
+
+        dispatch(addTodo(task));
+    }
 
     return (
         <Dialog
@@ -43,14 +53,25 @@ const AddTodoDialog = (props) => {
                     size="medium"
                     label="Task name"
                     placeholder="Enter task name"
-                    onChange={(e) => setTask(e.target.value)}
+                    onChange={(e) => setTaskName(e.target.value)}
                     fullWidth
+                />
+                <br />
+                <br />
+                <TextField
+                    variant="standard"
+                    size="medium"
+                    label="Task details"
+                    placeholder="Enter task details"
+                    onChange={(e) => setTaskDetails(e.target.value)}
+                    rows={5}
+                    fullWidth
+                    multiline
                 />
             </DialogContent>
             <DialogActions>
                 <Button
-                    onClick={() => dispatch(addTodo(task))}
-                    disabled={ !task }
+                    onClick={addTask}
                 >
                     Add task
                 </Button>
