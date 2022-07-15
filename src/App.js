@@ -2,7 +2,6 @@ import {useState} from "react";
 
 import {
     useSelector,
-    useDispatch
 } from "react-redux";
 
 import {
@@ -12,17 +11,16 @@ import {
     AppBar,
     Toolbar,
     Button,
+    Fab, Box,
 } from "@mui/material";
 
 import {
-    addTodo,
-} from "./actions";
+    Add
+} from "@mui/icons-material";
 
 import AddTodoDialog from "./components/add";
 
 function App() {
-    const dispatch = useDispatch();
-
     const [open, setOpen] = useState(false);
 
     const todos = useSelector(state => state.counter);
@@ -49,14 +47,40 @@ function App() {
                 </Toolbar>
             </AppBar>
             <Toolbar />
-            <Typography
-                variant="h4"
-                color="primary"
-                gutterBottom
+
+            <Box
+                sx={{
+                    paddingTop: "2rem",
+                }}
             >
-                TOOD manager with React & Redux!
-            </Typography>
-            <Button onClick={handleOpen}>Open</Button>
+                {
+                    todos
+                    ?
+                        todos.map((todo) => {
+                            return (
+                                <div
+                                    key='test'
+                                >
+                                    { todo }
+                                </div>
+                            )
+                        })
+                    :
+                        <Typography>No task is founded.</Typography>
+                }
+            </Box>
+
+            <Fab
+                color="primary"
+                onClick={handleOpen}
+                sx={{
+                    position: 'absolute',
+                    bottom: 16,
+                    right: 16,
+                }}
+            >
+                <Add />
+            </Fab>
 
             <AddTodoDialog
                 open={open}
