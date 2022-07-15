@@ -10,8 +10,11 @@ import {
     Grid,
     AppBar,
     Toolbar,
-    Button,
-    Fab, Box,
+    Fab,
+    Box,
+    Card,
+    CardContent,
+    CardHeader,
 } from "@mui/material";
 
 import {
@@ -23,7 +26,7 @@ import AddTodoDialog from "./components/add";
 function App() {
     const [open, setOpen] = useState(false);
 
-    const todos = useSelector(state => state.counter);
+    const todos = useSelector(state => state.todo);
 
     const handleOpen = () => {
         setOpen(true);
@@ -56,15 +59,32 @@ function App() {
                 {
                     todos
                     ?
-                        todos.map((todo) => {
-                            return (
-                                <div
-                                    key='test'
-                                >
-                                    { todo }
-                                </div>
-                            )
-                        })
+                        <Grid
+                            columns={{ xs: 6, md: 12 }}
+                            spacing={3}
+                            container
+                        >
+                            {
+                                todos.map((todo) => {
+                                    return (
+                                        <Grid
+                                            xs={12}
+                                            md={4}
+                                            item
+                                        >
+                                            <Card>
+                                                <CardHeader
+                                                    title={todo.name}
+                                                />
+                                                <CardContent>
+                                                    <Typography>{todo.details}</Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </Grid>
+                                    )
+                                })
+                            }
+                        </Grid>
                     :
                         <Typography>No task is founded.</Typography>
                 }
