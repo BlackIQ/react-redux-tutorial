@@ -11,7 +11,17 @@ import {
     TextField,
 } from "@mui/material";
 
+import {
+    useDispatch
+} from "react-redux";
+
+import {
+    addTodo
+} from "../actions"
+
 const AddTodoDialog = (props) => {
+    const dispatch = useDispatch();
+
     const {onClose, selectedValue, open} = props;
 
     const handleClose = () => {
@@ -39,7 +49,7 @@ const AddTodoDialog = (props) => {
             </DialogContent>
             <DialogActions>
                 <Button
-                    onClick={handleClose}
+                    onClick={() => dispatch(addTodo(task))}
                     disabled={ !task }
                 >
                     Add task
