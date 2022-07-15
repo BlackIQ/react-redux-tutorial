@@ -2,6 +2,7 @@ import {useState} from "react";
 
 import {
     useSelector,
+    useDispatch,
 } from "react-redux";
 
 import {
@@ -16,7 +17,7 @@ import {
     Card,
     CardContent,
     CardHeader,
-    Avatar,
+    Avatar, IconButton,
 } from "@mui/material";
 
 import {
@@ -24,12 +25,16 @@ import {
 } from "@mui/lab";
 
 import {
-    Add
+    Add,
+    Delete
 } from "@mui/icons-material";
 
 import AddTodoDialog from "./components/add";
+import {deleteTodo} from "./actions";
 
 function App() {
+    const dispatch = useDispatch();
+
     const [open, setOpen] = useState(false);
 
     const todos = useSelector(state => state.todo);
@@ -72,11 +77,7 @@ function App() {
                             {
                                 todos.map((todo) => {
                                     return (
-                                        <Grid
-                                            xs={12}
-                                            md={4}
-                                            item
-                                        >
+                                        <Box>
                                             <Card
                                                 variant="outlined"
                                             >
@@ -85,12 +86,17 @@ function App() {
                                                     avatar={
                                                         <Avatar sx={{ bgcolor: Colors.blue[500] }}>{todo.name[0]}</Avatar>
                                                     }
+                                                    action={
+                                                        <IconButton onClick={() => dispatch(deleteTodo(todo))}>
+                                                            <Delete />
+                                                        </IconButton>
+                                                    }
                                                 />
                                                 <CardContent>
                                                     <Typography>{todo.details}</Typography>
                                                 </CardContent>
                                             </Card>
-                                        </Grid>
+                                        </Box>
                                     )
                                 })
                             }
