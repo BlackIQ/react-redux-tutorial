@@ -1,13 +1,6 @@
-export const inc = (n) => {
+export const addTodo = (todo) => {
     return {
-        type: "INC",
-        payload: n,
-    };
-}
-
-export const dec = (n) => {
-    return {
-        type: "DEC",
-        payload: n,
+        type: "ADD_TODO",
+        payload: todo,
     };
 }
