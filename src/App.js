@@ -5,6 +5,7 @@ import {
 } from "react-redux";
 
 import {
+    colors as Colors,
     Typography,
     Container,
     Grid,
@@ -15,7 +16,12 @@ import {
     Card,
     CardContent,
     CardHeader,
+    Avatar,
 } from "@mui/material";
+
+import {
+    Masonry
+} from "@mui/lab";
 
 import {
     Add
@@ -37,7 +43,7 @@ function App() {
     };
 
     return (
-        <Container>
+        <Box>
             <AppBar
                 variant="outlined"
             >
@@ -51,18 +57,17 @@ function App() {
             </AppBar>
             <Toolbar />
 
-            <Box
+            <Container
                 sx={{
-                    paddingTop: "2rem",
+                    paddingTop: "1rem",
                 }}
             >
                 {
-                    todos
+                    todos.length !== 0
                     ?
-                        <Grid
-                            columns={{ xs: 6, md: 12 }}
-                            spacing={3}
-                            container
+                        <Masonry
+                            spacing={2}
+                            columns={{ xs: 1, sm: 2, md: 3 }}
                         >
                             {
                                 todos.map((todo) => {
@@ -72,9 +77,14 @@ function App() {
                                             md={4}
                                             item
                                         >
-                                            <Card>
+                                            <Card
+                                                variant="outlined"
+                                            >
                                                 <CardHeader
                                                     title={todo.name}
+                                                    avatar={
+                                                        <Avatar sx={{ bgcolor: Colors.blue[500] }}>{todo.name[0]}</Avatar>
+                                                    }
                                                 />
                                                 <CardContent>
                                                     <Typography>{todo.details}</Typography>
@@ -84,11 +94,11 @@ function App() {
                                     )
                                 })
                             }
-                        </Grid>
+                        </Masonry>
                     :
                         <Typography>No task is founded.</Typography>
                 }
-            </Box>
+            </Container>
 
             <Fab
                 color="primary"
@@ -106,7 +116,7 @@ function App() {
                 open={open}
                 onClose={handleClose}
             />
-        </Container>
+        </Box>
     );
 }
 
