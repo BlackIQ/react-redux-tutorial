@@ -10,7 +10,7 @@ import {Provider} from 'react-redux';
 
 import allReducers from './redux/reducers';
 
-import {loadState, saveState} from "./storage/localstore";
+import {loadState, saveState} from "./redux/storage/localstore";
 
 const persistedState = loadState();
 
