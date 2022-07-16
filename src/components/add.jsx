@@ -82,7 +82,7 @@ const AddTodoDialog = (props) => {
             <DialogTitle>Add a new todo</DialogTitle>
             <DialogContent>
                 <TextField
-                    variant="standard"
+                    variant="outlined"
                     size="medium"
                     label="Task name"
                     placeholder="Enter task name"
@@ -92,7 +92,7 @@ const AddTodoDialog = (props) => {
                 <br />
                 <br />
                 <TextField
-                    variant="standard"
+                    variant="outlined"
                     size="medium"
                     label="Task details"
                     placeholder="Enter task details"
@@ -104,7 +104,7 @@ const AddTodoDialog = (props) => {
                 <br />
                 <br />
                 <Select
-                    variant="standard"
+                    variant="outlined"
                     value={color}
                     label="Color"
                     size="medium"
