@@ -17,7 +17,7 @@ import {
 
 import {
     addTodo
-} from "../actions"
+} from "../redux/actions"
 
 const AddTodoDialog = (props) => {
     const dispatch = useDispatch();
