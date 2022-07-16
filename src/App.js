@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 import {
     useSelector,
@@ -9,7 +9,6 @@ import {
     colors as Colors,
     Typography,
     Container,
-    Grid,
     AppBar,
     Toolbar,
     Fab,
@@ -30,7 +29,7 @@ import {
 } from "@mui/icons-material";
 
 import AddTodoDialog from "./components/add";
-import {deleteTodo} from "./actions";
+import {deleteTodo} from "./redux/actions";
 
 function App() {
     const dispatch = useDispatch();
@@ -38,6 +37,10 @@ function App() {
     const [open, setOpen] = useState(false);
 
     const todos = useSelector(state => state.todo);
+
+    useEffect(() => {
+        // Do stuff
+    }, [todos]);
 
     const handleOpen = () => {
         setOpen(true);
