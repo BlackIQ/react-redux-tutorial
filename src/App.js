@@ -87,7 +87,7 @@ function App() {
                                                 <CardHeader
                                                     title={todo.name}
                                                     avatar={
-                                                        <Avatar sx={{ bgcolor: Colors.blue[500] }}>{todo.name[0]}</Avatar>
+                                                        <Avatar sx={{ bgcolor: todo.color }}>{todo.name[0]}</Avatar>
                                                     }
                                                     action={
                                                         <IconButton onClick={() => dispatch(deleteTodo(todo))}>
