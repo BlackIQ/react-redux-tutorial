@@ -58,7 +58,7 @@ function App() {
                 <Toolbar>
                     <Container>
                         <Typography>
-                            TODO Manager
+                            Redux TODO Manager
                         </Typography>
                     </Container>
                 </Toolbar>
@@ -105,7 +105,11 @@ function App() {
                             }
                         </Masonry>
                     :
-                        <Typography>No task is founded.</Typography>
+                        <Typography
+                            variant="h5"
+                        >
+                            No task is founded.
+                        </Typography>
                 }
             </Container>
 
