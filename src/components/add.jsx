@@ -3,12 +3,15 @@ import {
 } from "react";
 
 import {
+    colors as Colors,
     Dialog,
     DialogTitle,
     DialogContent,
     DialogActions,
     Button,
     TextField,
+    Select,
+    MenuItem
 } from "@mui/material";
 
 import {
@@ -31,10 +34,40 @@ const AddTodoDialog = (props) => {
     const [taskName, setTaskName] = useState('');
     const [taskDetails, setTaskDetails] = useState('');
 
+    const [color, setColor] = useState(Colors.blue[500]);
+
+    const todoColors = [
+        {
+            color: Colors.blue[500],
+            name: "Blue"
+        },
+        {
+            color: Colors.green[500],
+            name: "Green"
+        },
+        {
+            color: Colors.red[500],
+            name: "Red"
+        },
+        {
+            color: Colors.purple[500],
+            name: "Purple"
+        },
+        {
+            color: Colors.yellow[500],
+            name: "Yellow"
+        },
+        {
+            color: Colors.orange[500],
+            name: "Orange"
+        }
+    ];
+
     const addTask = () => {
         const task = {
             name: taskName,
-            details: taskDetails
+            details: taskDetails,
+            color: color,
         }
 
         dispatch(addTodo(task));
@@ -68,6 +101,32 @@ const AddTodoDialog = (props) => {
                     fullWidth
                     multiline
                 />
+                <br />
+                <br />
+                <Select
+                    variant="standard"
+                    value={color}
+                    label="Color"
+                    size="medium"
+                    color="primary"
+                    onChange={(e) => setColor(e.target.value)}
+                    fullWidth
+                >
+                    {
+                        todoColors.map((color) => {
+                            return (
+                                <MenuItem
+                                    value={color.color}
+                                    sx={{
+                                        color: color.color
+                                    }}
+                                >
+                                    {color.name}
+                                </MenuItem>
+                            )
+                        })
+                    }
+                </Select>
             </DialogContent>
             <DialogActions>
                 <Button
